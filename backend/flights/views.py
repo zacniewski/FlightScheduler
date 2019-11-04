@@ -10,5 +10,5 @@ def index(request):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    query = User.objects.all()
-    serialize_class = UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
