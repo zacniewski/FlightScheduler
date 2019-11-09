@@ -30,7 +30,7 @@ def flight_list(request):
 
     # Add one
     if request.method == 'POST':
-        schedule_data = JSONParser().parser(request)
+        schedule_data = JSONParser().parse(request)
         schedule_serializer = ScheduleSerializer(data=schedule_data)
         if schedule_serializer.is_valid():
             schedule_serializer.save()
@@ -56,7 +56,7 @@ def flight_detail(request, pk):
 
     # update one
     if request.method == 'PUT':
-        schedule_data = JSONParser().parser(request)
+        schedule_data = JSONParser().parse(request)
         schedule_serializer = ScheduleSerializer(schedule_data, data=schedule_data)
         if schedule_serializer.is_valid():
             schedule_serializer.save()
