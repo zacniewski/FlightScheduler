@@ -24,22 +24,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">1</td>
-                        <td>United Airlines</td>
-                        <td>UA123</td>
-                        <td>Round Trip</td>
-                        <td>ORD</td>
-                        <td>JFK</td>
-                        <td>06-30-2019</td>
-                        <td>07-01-2019</td>
+                    <tr *ngFor="let flight of flights | async; let i=index">
+                        <td class="text-center">{{ flight.id }}</td>
+                        <td>{{ flight.airline }}</td>
+                        <td>{{ flight.flight_no }}</td>
+                        <td>{{ flight.trip_type }}</td>
+                        <td>{{ flight.departure_airport }}</td>
+                        <td>{{ flight.arrival_airport }}</td>
+                        <td>{{ flight.departure_date }}</td>
+                        <td>{{ flight.return_date }}</td>
                         <td class="td-actions text-right">
                             <a type="button" class="btn btn-success btn-just-icon btn-sm "
-                            style="margin-left:10px;">
+                            style="margin-left:10px;"
+                            [routerLink]="['/edit', flight.id]"
+                            >
                                 <i class="material-icons">Edit</i>
                             </a>
 
-                            <button (click)="deleteFlight()" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" style="margin-left:10px;">
+                            <button (click)="deleteFlight(flight.id)" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" style="margin-left:10px;">
                                 <i class="material-icons">Delete</i>
                             </button>
                         </td>
