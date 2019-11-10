@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable} from "rxjs";
+import { Flight} from "../models/flight";
+import { FlightService} from "../services/flight.service";
 
 @Component({
   selector: 'app-flight-list',
@@ -7,17 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlightListComponent implements OnInit {
 
-  constructor() { }
+  flights: Observable<Flight[]>;
+  constructor(private flightService: FlightService) { }
 
   ngOnInit() {
     this.loadFlightsData();
   }
 
   loadFlightsData(){
-
+    this.flights = this.flightService.getAllFlights();
   }
 
-  deleteFlight(){
+  deleteFlight(id){
 
   }
 
